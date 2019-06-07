@@ -2,7 +2,7 @@
   <nav>
     <v-toolbar>
       <v-toolbar-side-icon>
-        <img src="@/assets/logo.png">
+        <img src="../assets/icon.png">
       </v-toolbar-side-icon>
       <v-toolbar-title class="text-uppercase grey--text">
         <span class="font-weigth-light">Ilha</span>
@@ -45,14 +45,18 @@
         </v-layout>
       </v-toolbar-items>
     </v-toolbar>
+    <Signup/>
   </nav>
 </template>
 
 <script>
-import router from '../router'
-
+import router from "../router";
+import Signup from "./Signup.vue";
 export default {
   name: "App",
+  components: {
+    Signup
+  },
   methods: {
     login: e => {
       e.preventDefault();
@@ -64,7 +68,7 @@ export default {
           password: password
         };
         axios.post("/login", data).then(response => {
-          consol.log("Logged in");
+          console.log("Logged in");
           router.push("/dashboard");
         });
       };
