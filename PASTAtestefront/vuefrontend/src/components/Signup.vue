@@ -26,7 +26,7 @@
                 style="min-height: 96px"
                 type="password"
               ></v-text-field>
-              <v-text-field v-model="phone" box color="black" label="Phone number" mask="phone"></v-text-field>
+              <v-text-field v-model="phone" box color="black" label="Phone number" mask="+351 ### ### ###"></v-text-field>
               <v-text-field
                 v-model="email"
                 :rules="[rules.email]"
