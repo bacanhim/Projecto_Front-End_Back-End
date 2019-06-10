@@ -78,10 +78,10 @@ module.exports = function (app, passport) {
             })
         })
     });
-    app.get("/api/deletepost", authMiddleware, function (req, res) {
-        var pub_id = req.body.pub_id;
+    app.post("/api/deletepost", authMiddleware, function (req, res) {
+        var pub_id = req.body.publicacao_id;
         console.log(pub_id);
-        connection.query("DELETE FROM `publicacao` WHERE `publicacao_id` = " + pub_id + ";", function (err, rows) {
+        connection.query("DELETE FROM publicacao WHERE publicacao_id = " + pub_id + ";", function (err, rows) {
             res.send({
                 message : "Apagado com sucesso"
             })

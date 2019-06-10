@@ -123,10 +123,9 @@
                         <v-icon>more_vert</v-icon>
                       </v-btn>
                     </template>
-                    <v-btn style="display:none;" v-model="pub_id">{{posts.publicacao_id}}</v-btn>
                     <v-list>
                       <v-list-tile>
-                        <v-list-tile-title><v-btn dark small v-on:click="deletepost"> Apagar</v-btn></v-list-tile-title>
+                        <v-list-tile-title><v-btn dark small v-on:click="deletepost(posts.publicacao_id)"> Apagar</v-btn></v-list-tile-title>
                       </v-list-tile>
                     </v-list>
                   </v-menu>
@@ -257,13 +256,11 @@ export default {
           console.log(errors);
         });
     },
-    deletepost: function() {
-      let pub_id = {
-        pub_id : this.pub_id
-      }
-      console.log(pub_id)
+    deletepost: function(publicacao_id) {
+      let pub_id = { pub_id : publicacao_id }
+      console.log(publicacao_id)
       axios
-        .post("/api/deletepost",pub_id)
+        .post("/api/deletepost",publicacao_id)
         .then(response => {
           console.log(response);
         })
