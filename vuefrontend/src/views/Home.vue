@@ -158,7 +158,7 @@ export default {
         });
     },
     postar: function() {
-      let texto=  this.texto;
+      let texto=  { texto: this.texto };
       axios
         .post("/api/post",texto)
         .then(response => {

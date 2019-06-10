@@ -52,7 +52,7 @@ module.exports = function (app, passport) {
         res.send("Logouted");
     });
     app.get('/api/allposts', authMiddleware, function (req, res) {
-        connection.query("SELECT `publicacao_id`,`texto` FROM `publicacao`", function (err, rows) {
+        connection.query("SELECT `publicacao_id`,`texto` FROM `publicacao` order by publicacao_id desc", function (err, rows) {
             if (err) throw err;
             res.send({
                 posts: rows
@@ -61,20 +61,32 @@ module.exports = function (app, passport) {
     });
     app.post('/api/post', authMiddleware, function (req, res) {
         var texto = req.body.texto;
-        console.log(texto);     
-        connection.query("INSERT INTO publicacao(texto,perfil_id) VALUES ("+texto+","+req.session.passport.user+");", function (err, rows) {
-            if (err) throw err;
-            res.send({message: "Post inserido com sucesso"})
-        })
+        if (!texto == undefined) {
+            connection.query("INSERT INTO `publicacao`(`texto`, `perfil_id`) VALUES ('" + texto + "','" + req.session.passport.user + "');", function (err, rows) {
+                if (err) throw err;
+                res.send({
+                    message: "Post inserido com sucesso"
+                })
+            })
+        }
     });
     app.get('/api/myposts', authMiddleware, function (req, res) {
-        connection.query("SELECT `publicacao_id`,`texto` FROM publicacao where perfil_id ="+req.session.passport.user, function (err, rows) {
+        connection.query("SELECT `publicacao_id`,`texto` FROM publicacao where perfil_id =" + req.session.passport.user+" order by publicacao_id desc", function (err, rows) {
             if (err) throw err;
             res.send({
                 posts: rows
             })
         })
     });
+    app.get("/api/deletepost", authMiddleware, function (req, res) {
+        var pub_id = req.body.pub_id;
+        console.log(pub_id);
+        connection.query("DELETE FROM `publicacao` WHERE `publicacao_id` = " + pub_id + ";", function (err, rows) {
+            res.send({
+                message : "Apagado com sucesso"
+            })
+        });
+    })
     app.get("/api/user", authMiddleware, function (req, res) {
         connection.query("SELECT gender,data_nasc,perfil_id,nome,bio,email,numero,ava from perfil where perfil_id =" + req.session.passport.user + ";", function (err, rows) {
             res.send({

@@ -97,13 +97,13 @@
             </v-navigation-notification>
             <v-flex xs7>
               <v-card dark class="movecenter">
-                <v-textarea name="input-7-1" box auto-grow placeholder="Escreva algo..."></v-textarea>
+                <v-textarea name="input-7-1" box auto-grow placeholder="Escreva algo..." v-model="texto"></v-textarea>
                 <v-layout row wrap align-center justify-space-between>
                   <v-flex offset-xs1>
                     <v-btn class="white--text" color="black accent-4" depressed>Foto/video</v-btn>
                   </v-flex>
                   <v-flex offset-xs4>
-                    <v-btn class="white--text" color="black accent-4" depressed>Enviar</v-btn>
+                    <v-btn class="white--text" color="black accent-4" depressed v-on:click="postar">Enviar</v-btn>
                   </v-flex>
                 </v-layout>
               </v-card>
@@ -112,24 +112,39 @@
               <br>
 
               <v-card dark color="Grey" class="movecenter">
-                <v-layout justify-end>
-                  <v-menu bottom left>
+               
+                  
+                
+                <v-card dark flat color="Grey" class="movecenter" v-for="posts in posts " :key="posts.publicacao_id">
+                   <v-layout justify-end>
+                     <v-menu bottom left>
                     <template v-slot:activator="{ on }">
                       <v-btn dark icon v-on="on">
                         <v-icon>more_vert</v-icon>
                       </v-btn>
                     </template>
-
+                    <v-btn style="display:none;" v-model="pub_id">{{posts.publicacao_id}}</v-btn>
                     <v-list>
                       <v-list-tile>
-                        <v-list-tile-title><v-btn dark small v-model:="posts.publicacao_id" v-on:click="deletepost"> Apagar</v-btn></v-list-tile-title>
+                        <v-list-tile-title><v-btn dark small v-on:click="deletepost"> Apagar</v-btn></v-list-tile-title>
                       </v-list-tile>
                     </v-list>
                   </v-menu>
-                </v-layout>
+                   </v-layout>
                 <v-layout row wrap align-center justify-space-between>
-                  <v-list-tile v-for="posts in posts " :key="posts.perfil_id" >
-                  <v-flex xs10 offset-xs0 offset-lg1>
+                  <v-list-tile >
+                    <v-list class="pa-0">
+                  <v-list-tile avatar>
+                    <v-list-tile-avatar>
+                      <img :src="user.ava">
+                    </v-list-tile-avatar>
+
+                    <v-list-tile-content>
+                      <v-list-tile-title>{{user.nome}}</v-list-tile-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                </v-list>
+                  <v-flex xs10 offset-xs0 >
                     <v-card dark><v-flex xs12 >{{posts.texto}}</v-flex></v-card>
                   </v-flex>
                   </v-list-tile>
@@ -138,7 +153,7 @@
                 <v-list class="pt-0" dense>
                   <v-container>
                     <v-layout row wrap align-center justify-space-between>
-                      <v-list-tile v-for="publicacao in publicacao " :key="publicacao" >
+                      <v-list-tile v-for="publicacao in publicacao " :key="publicacao.title">
                         <v-list-tile-action>
                           <v-icon>{{ publicacao.icon }}</v-icon>
                         </v-list-tile-action>
@@ -166,6 +181,7 @@
                     </v-layout>
                   </v-card>
                 </v-list>
+              </v-card>
               </v-card>
             </v-flex>
           </v-layout>
@@ -219,8 +235,15 @@ export default {
         });
     },
     postar: function() {
-      var id = this.posts.publicacao_id;
-      console.log(id);
+      let texto=  { texto: this.texto };
+      axios
+        .post("/api/post",texto)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
     },
     getPosts: function() {
       let self = this;
@@ -233,11 +256,24 @@ export default {
         .catch(errors => {
           console.log(errors);
         });
+    },
+    deletepost: function() {
+      let pub_id = {
+        pub_id : this.pub_id
+      }
+      console.log(pub_id)
+      axios
+        .post("/api/deletepost",pub_id)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
     }
   },
   mounted() {
     this.getUserdata();
-    this.postar();
     this.getPosts();
   }
 };
