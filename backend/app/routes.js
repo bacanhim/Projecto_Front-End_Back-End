@@ -35,17 +35,18 @@ module.exports = function (app, passport) {
             })
         })(req, res, next)
     });
-    app.get("/api/galeria/", authMiddleware, function (req, res) { //mostra todos as as fotos de um user para formar a galeria
-        connection.query("SELECT foto FROM `galeria` WHERE `perfil_id` = " + req.session.passport.user, function (err, rows) {
-            if (err) throw err;
-            res.send(rows);
-        });
-    })
     app.get('/api/profile', authMiddleware, function (req, res) {
         res.send("Logged in");
     })
     app.get('/api/home', authMiddleware, function (req, res) {
         res.send("Logged in");
+    })
+    app.get("/api/user", authMiddleware, function (req, res) {
+        connection.query("SELECT gender,data_nasc,perfil_id,nome,bio,email,numero,ava from perfil where perfil_id =" + req.session.passport.user + ";", function (err, rows) {
+            res.send({
+                user: rows[0]
+            })
+        });
     })
     app.get('/api/logout', function (req, res) {
         req.logout();
@@ -87,12 +88,11 @@ module.exports = function (app, passport) {
             })
         });
     })
-    app.get("/api/user", authMiddleware, function (req, res) {
-        connection.query("SELECT gender,data_nasc,perfil_id,nome,bio,email,numero,ava from perfil where perfil_id =" + req.session.passport.user + ";", function (err, rows) {
-            res.send({
-                user: rows[0]
-            })
+    
+    app.get("/api/galeria/", authMiddleware, function (req, res) { //mostra todos as as fotos de um user para formar a galeria
+        connection.query("SELECT foto FROM `galeria` WHERE `perfil_id` = " + req.session.passport.user, function (err, rows) {
+            if (err) throw err;
+            res.send(rows);
         });
     })
-
 };
