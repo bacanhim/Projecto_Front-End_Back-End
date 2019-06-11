@@ -163,6 +163,7 @@ export default {
         .post("/api/post",texto)
         .then(response => {
           console.log(response);
+          location.reload();
         })
         .catch(errors => {
           console.log(errors);

@@ -61,9 +61,12 @@ module.exports = function (app, passport) {
     });
     app.post('/api/post', authMiddleware, function (req, res) {
         var texto = req.body.texto;
-        if (!texto == undefined) {
-            connection.query("INSERT INTO `publicacao`(`texto`, `perfil_id`) VALUES ('" + texto + "','" + req.session.passport.user + "');", function (err, rows) {
-                if (err) throw err;
+        // console.log(texto);
+        // console.log(req.session.passport.user);
+        // console.log(!texto == undefined)
+        if (texto != undefined || texto != "") {
+            connection.query("INSERT INTO `publicacao`(`texto`, `perfil_id`) VALUES ('" + texto + "'," + req.session.passport.user + ")", function (err, rows) {
+                if (err) console.log(err);
                 res.send({
                     message: "Post inserido com sucesso"
                 })
