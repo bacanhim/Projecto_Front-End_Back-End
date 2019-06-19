@@ -9,11 +9,12 @@
             </ion-title>
           </ion-col>
           <ion-col>
-            <ion-avatar>
+           <ion-tabs>
+            <ion-avatar tab="Perfil">
               <img
                 src="https://pbs.twimg.com/profile_images/971557554177347584/NNowGsXX_400x400.jpg"
               >
-            </ion-avatar>
+            </ion-avatar></ion-tabs>
           </ion-col>
         </ion-row>
       </ion-toolbar>
