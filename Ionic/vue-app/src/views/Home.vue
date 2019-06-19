@@ -36,58 +36,26 @@
           </ion-col>
         </ion-row>
       </ion-card>
-      <ion-card color="light">
-        <ion-list>
-          <ion-item>
-            <ion-avatar item-start>
-              <img
-                src="https://pbs.twimg.com/profile_images/971557554177347584/NNowGsXX_400x400.jpg"
-              >
-            </ion-avatar>
-            <h2>Gil Veloza</h2>
-          </ion-item>
-          <img src="http://tiny.cc/z8di8y">
-          <ion-card-content color="light">
-            <p>Gosto de RedBull!!!!!!!!!</p>
-          </ion-card-content>
-        </ion-list>
-        <ion-row>
-          <ion-col>
-            <ion-button icon-start color="dark" small>
-              <ion-icon name="thumbs-up"></ion-icon>
-              <div>12 likes</div>
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button icon-start color="dark" small>
-              <ion-icon name="text"></ion-icon>
-              <div>4 Comments</div>
-            </ion-button>
-          </ion-col>
-          <ion-col align-self-center text-center>
-            <ion-note>11h ago</ion-note>
-          </ion-col>
-        </ion-row>
-
+      <ion-card color="light" v-for="posts in posts " :key="posts.user_id">
         <ion-item>
           <ion-avatar item-start>
-            <img src="http://tiny.cc/f5di8y">
+            <img :src="posts.ava">
           </ion-avatar>
-          <h2>Fernando Nunes</h2>
+          <h2>{{posts.nome}}</h2>
           <p>1 hora atras</p>
         </ion-item>
 
-        <img src="http://tiny.cc/z8di8y">
+        <img :src="posts.img">
 
         <ion-card-content>
-          <p>Gosto de RedBull!!!!!!!!!</p>
+          <p>{{posts.descricao}}</p>
         </ion-card-content>
 
         <ion-row>
           <ion-col>
             <ion-button icon-start color="dark" small>
               <ion-icon name="thumbs-up"></ion-icon>
-              <div>12 likes</div>
+              <div>{{posts.likes}} likes</div>
             </ion-button>
           </ion-col>
           <ion-col>
@@ -138,8 +106,33 @@
 </template>
 
 <script>
-</script>
+import axios from "axios";
 
+export default {
+  data() {
+    return {
+      posts:{},
+    };
+  },
+  methods: {
+    getPosts: function() {
+      let self = this;
+      axios
+        .get("/api/allposts")
+        .then(response => {
+          console.log(response);
+          self.$set(this, "posts", response.data.posts);
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+    },
+  },
+  mounted() {
+    this.getPosts();
+  }
+};
+</script>
 <style>
 .titleLeft {
   -webkit-padding-start: 0;
