@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@ionic/vue": "0.0.8-test",
+    "axios": "^0.19.0",
+    "nodemon": "^1.19.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
