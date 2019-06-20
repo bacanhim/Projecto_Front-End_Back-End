@@ -15,32 +15,109 @@
     </ion-header>
     <ion-content>
       <ion-item>
-        <ion-img src="https://pbs.twimg.com/profile_images/971557554177347584/NNowGsXX_400x400.jpg"></ion-img>
+        <ion-img :src="user.ava"></ion-img>
       </ion-item>
       <ion-list>
         <ion-item>
-          <ion-label>nome</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>data</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>bio</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>genero</ion-label>
+          <ion-label>{{user.nome}}</ion-label>
         </ion-item>
         <ion-item>
           <ion-label>o que falta</ion-label>
         </ion-item>
       </ion-list>
+            <ion-card color="light">
+        <ion-textarea name="input-7-1" placeholder="Escreva-algo.."></ion-textarea>
+        <ion-row>
+          <ion-col>
+            <ion-button icon-start color="dark" small>
+              <div>Foto/video</div>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button icon-start color="dark" small>
+              <div>Enviar</div>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      <ion-card color="light" v-for="posts in posts " :key="posts.user_id">
+        <ion-item>
+          <ion-avatar item-start>
+            <img :src="posts.ava">
+          </ion-avatar>
+          <h2>{{posts.nome}}</h2>
+        </ion-item>
+
+        <img :src="posts.img">
+
+        <ion-card-content>
+          <p>{{posts.descricao}}</p>
+        </ion-card-content>
+
+        <ion-row>
+          <ion-col>
+            <ion-button icon-start color="dark" small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{posts.likes}} likes</div>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button icon-start color="dark" small>
+              <ion-icon name="text"></ion-icon>
+              <div>4 Comments</div>
+            </ion-button>
+          </ion-col>
+          <ion-col align-self-center text-center>
+            <ion-note>11h ago</ion-note>
+          </ion-col>
+        </ion-row>
+        <br>
+      </ion-card>
     </ion-content>
   </ion-app>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "home"
+  data() {
+    return {
+      user: {},
+      posts:{},
+    };
+  },
+  methods: {
+    getUserdata: function() {
+      let self = this;
+      axios
+        .get("/api/user")
+        .then(response => {
+          console.log(response);
+          self.$set(this, "user", response.data.user);
+
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+    },
+    getPosts: function() {
+      let self = this;
+      axios
+        .get("/api/myposts")
+        .then(response => {
+          console.log(response);
+          self.$set(this, "posts", response.data.posts);
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+    },
+  },
+  mounted() {
+    this.getUserdata();
+    this.getPosts();
+  }
 };
 </script>
 

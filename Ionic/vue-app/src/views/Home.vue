@@ -62,9 +62,9 @@
             <ion-note>11h ago</ion-note>
           </ion-col>
         </ion-row>
+        <br>
       </ion-card>
     </ion-content>
-
   </ion-app>
 </template>
 

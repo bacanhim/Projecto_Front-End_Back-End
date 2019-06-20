@@ -27,11 +27,26 @@ var server = app.listen(8081, function () {
     console.log("Example app listening at http://localhost:%s", port);
 });
 var connection = require('./database.js');
-    app.get('/api/allposts', function (req, res) {
-        connection.query("SELECT * FROM `user`", function (err, rows) {
-            if (err) throw err;
-            res.send({
-                posts: rows
-            })
+app.get('/api/allposts', function (req, res) {
+    connection.query("SELECT * FROM `user`", function (err, rows) {
+        if (err) throw err;
+        res.send({
+            posts: rows
+        })
+    })
+});
+app.get("/api/user", function (req, res) {
+    connection.query("SELECT nome,bio,ava from user where user_id = 1", function (err, rows) {
+        res.send({
+            user: rows[0]
         })
     });
+})
+app.get('/api/myposts', function (req, res) {
+    connection.query("SELECT * FROM `user` where user_id = 1", function (err, rows) {
+        if (err) throw err;
+        res.send({
+            posts: rows
+        })
+    })
+});
