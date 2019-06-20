@@ -3,15 +3,12 @@
     <ion-header>
       <ion-toolbar>
         <ion-row>
-          <ion-col align-items-start>
+          <ion-col>
             <ion-title>
-              <h5>IlhaMadeira</h5>
+              <h5>
+                <img src="..\assets\icon.png"> IlhaMadeira
+              </h5>
             </ion-title>
-          </ion-col>
-          <ion-col align-items-end>
-            <ion-button ion-button color="dark" round>
-              <ion-icon name="person"></ion-icon>
-            </ion-button>
           </ion-col>
         </ion-row>
       </ion-toolbar>
@@ -52,8 +49,6 @@
         <div class="card-subtitle">28 Listings</div>
       </ion-card>
     </ion-content>
-
-   
   </ion-app>
 </template>
 

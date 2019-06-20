@@ -28,12 +28,13 @@
                 <ion-icon name="search"></ion-icon>
               </ion-tab-button>
 
-              <ion-tab-button tab="definicoes">
-                <ion-label>Definições</ion-label>
-                <ion-icon name="settings"></ion-icon>
-              </ion-tab-button>
               <ion-tab-button tab="perfil">
                 <ion-label>Perfil</ion-label>
+                <ion-icon name="contact"></ion-icon>
+              </ion-tab-button>
+              
+              <ion-tab-button tab="definicoes">
+                <ion-label>Definições</ion-label>
                 <ion-icon name="settings"></ion-icon>
               </ion-tab-button>
             </ion-tab-bar>

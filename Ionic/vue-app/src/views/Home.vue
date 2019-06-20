@@ -5,21 +5,10 @@
         <ion-row>
           <ion-col>
             <ion-title>
-              <img src="..\assets\logo.png" >
-              <h5>IlhaMadeira</h5>
+              <h5>
+                <img src="..\assets\icon.png">  IlhaMadeira
+              </h5>
             </ion-title>
-          </ion-col>
-          <ion-col>
-            <ion-tabs>
-              <ion-tab tab="perfil">Home Content</ion-tab>
-                 <ion-tab-button tab="perfil">
-                <ion-avatar>
-                  <img
-                    src="https://pbs.twimg.com/profile_images/971557554177347584/NNowGsXX_400x400.jpg"
-                  >
-                </ion-avatar>
-              </ion-tab-button>
-            </ion-tabs>
           </ion-col>
         </ion-row>
       </ion-toolbar>
@@ -107,8 +96,6 @@
         </ion-row>
       </ion-card>
     </ion-content>
-
-   
   </ion-app>
 </template>
 
