@@ -14,12 +14,6 @@ export default new IonicVueRouter({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () =>
-        import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
       path: '/amigos',
       name: 'amigos',
       component: () =>

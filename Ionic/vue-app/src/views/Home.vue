@@ -6,7 +6,7 @@
           <ion-col>
             <ion-title>
               <h5>
-                <img src="..\assets\icon.png">  IlhaMadeira
+                <img src="..\assets\icon.png"> IlhaMadeira
               </h5>
             </ion-title>
           </ion-col>
@@ -65,6 +65,46 @@
         <br>
       </ion-card>
     </ion-content>
+    <br>
+    <br>
+    <div style="position: absolute; bottom: 0px; width: 100%">
+      <ion-footer>
+        <ion-toolbar>
+          <ion-tabs>
+            <ion-tab tab="home">Home Content</ion-tab>
+            <ion-tab tab="settings">Settings Content</ion-tab>
+
+            <ion-tab-bar slot="bottom">
+              <ion-tab-button tab="/">
+                <ion-label>Inicio</ion-label>
+                <ion-icon name="home"></ion-icon>
+                <ion-badge></ion-badge>
+              </ion-tab-button>
+
+              <ion-tab-button tab="Amigos">
+                <ion-label>Amigos</ion-label>
+                <ion-icon name="contacts"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="Explorar">
+                <ion-label>Explorar</ion-label>
+                <ion-icon name="search"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="perfil">
+                <ion-label>Perfil</ion-label>
+                <ion-icon name="contact"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="definicoes">
+                <ion-label>Definições</ion-label>
+                <ion-icon name="settings"></ion-icon>
+              </ion-tab-button>
+            </ion-tab-bar>
+          </ion-tabs>
+        </ion-toolbar>
+      </ion-footer>
+    </div>
   </ion-app>
 </template>
 
@@ -74,7 +114,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      posts:{},
+      posts: {}
     };
   },
   methods: {
@@ -89,7 +129,7 @@ export default {
         .catch(errors => {
           console.log(errors);
         });
-    },
+    }
   },
   mounted() {
     this.getPosts();

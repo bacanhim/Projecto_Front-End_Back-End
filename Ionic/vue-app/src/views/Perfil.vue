@@ -15,17 +15,17 @@
     </ion-header>
     <ion-content>
       <ion-item>
-        <ion-img :src="user.ava"></ion-img>
+        <ion-img :src="user.ava" style="align-CONTENT: center"></ion-img>
       </ion-item>
       <ion-list>
         <ion-item>
           <ion-label>{{user.nome}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>o que falta</ion-label>
+          <ion-label>{{user.bio}}</ion-label>
         </ion-item>
       </ion-list>
-            <ion-card color="light">
+      <ion-card color="light">
         <ion-textarea name="input-7-1" placeholder="Escreva-algo.."></ion-textarea>
         <ion-row>
           <ion-col>
@@ -74,6 +74,46 @@
         <br>
       </ion-card>
     </ion-content>
+    <br>
+    <br>
+    <div style="position: absolute; bottom: 0px; width: 100%">
+      <ion-footer>
+        <ion-toolbar>
+          <ion-tabs>
+            <ion-tab tab="home">Home Content</ion-tab>
+            <ion-tab tab="settings">Settings Content</ion-tab>
+
+            <ion-tab-bar slot="bottom">
+              <ion-tab-button tab="/">
+                <ion-label>Inicio</ion-label>
+                <ion-icon name="home"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="Amigos">
+                <ion-label>Amigos</ion-label>
+                <ion-icon name="contacts"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="Explorar">
+                <ion-label>Explorar</ion-label>
+                <ion-icon name="search"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="perfil">
+                <ion-label>Perfil</ion-label>
+                <ion-icon name="contact"></ion-icon>
+                <ion-badge></ion-badge>
+              </ion-tab-button>
+
+              <ion-tab-button tab="definicoes">
+                <ion-label>Definições</ion-label>
+                <ion-icon name="settings"></ion-icon>
+              </ion-tab-button>
+            </ion-tab-bar>
+          </ion-tabs>
+        </ion-toolbar>
+      </ion-footer>
+    </div>
   </ion-app>
 </template>
 
@@ -84,7 +124,7 @@ export default {
   data() {
     return {
       user: {},
-      posts:{},
+      posts: {}
     };
   },
   methods: {
@@ -95,7 +135,6 @@ export default {
         .then(response => {
           console.log(response);
           self.$set(this, "user", response.data.user);
-
         })
         .catch(errors => {
           console.log(errors);
@@ -112,7 +151,7 @@ export default {
         .catch(errors => {
           console.log(errors);
         });
-    },
+    }
   },
   mounted() {
     this.getUserdata();
