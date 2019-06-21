@@ -54,7 +54,7 @@
         <img
           src="http://www.discoveringmadeira.com/media/discovering-madeira-imageLinkfunchal-bay-by-night-slideshow-1280x7202.jpg"
         >
-        <div class="card-title">Fucnhal</div>
+        <div class="card-title">Funchal</div>
         <div class="card-subtitle">Baia do Fucnhal</div>
       </ion-card>
     </ion-content>
