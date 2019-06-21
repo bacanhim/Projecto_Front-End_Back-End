@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Jun-2019 às 00:17
+-- Tempo de geração: 21-Jun-2019 às 15:57
 -- Versão do servidor: 10.3.15-MariaDB
 -- versão do PHP: 7.3.6
 
@@ -35,16 +35,17 @@ CREATE TABLE `user` (
   `comments` varchar(500) NOT NULL,
   `ava` varchar(500) NOT NULL DEFAULT 'https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png',
   `descricao` varchar(500) NOT NULL,
-  `img` varchar(500) NOT NULL
+  `img` varchar(500) NOT NULL,
+  `bio` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
-INSERT INTO `user` (`user_id`, `nome`, `likes`, `comments`, `ava`, `descricao`, `img`) VALUES
-(1, 'Fernando Mendesss', 500, 'Lindo, comia.', 'https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png', 'Gostoso como sempre', 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FCFrmfA6FqaA%2Fhqdefault.jpg&f=1'),
-(2, 'Gervasio', 20, 'wawdaw', 'https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png', 'Abri a camera frontal sem querer', 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fb%2Fb4%2F2010TIBE_Day4_Hall1_Monga_Photobook_Event_Ethan_Ruan.jpg%2F1200px-2010TIBE_Day4_Hall1_Monga_Photobook_Event_Ethan_Ruan.jpg&f=1');
+INSERT INTO `user` (`user_id`, `nome`, `likes`, `comments`, `ava`, `descricao`, `img`, `bio`) VALUES
+(1, 'Fernando Mendesss', 500, 'Lindo, comia.', 'https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png', 'Gostoso como sempre', 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FCFrmfA6FqaA%2Fhqdefault.jpg&f=1', 'awdaw'),
+(2, 'Gervasio', 20, 'wawdaw', 'https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png', 'Abri a camera frontal sem querer', 'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fb%2Fb4%2F2010TIBE_Day4_Hall1_Monga_Photobook_Event_Ethan_Ruan.jpg%2F1200px-2010TIBE_Day4_Hall1_Monga_Photobook_Event_Ethan_Ruan.jpg&f=1', 'awdawd2e12dawd');
 
 --
 -- Índices para tabelas despejadas
